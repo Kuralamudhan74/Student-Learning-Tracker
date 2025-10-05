@@ -1,0 +1,96 @@
+/* Login Page Styles */
+.login-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.login-title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: #1f2937;
+  margin: 0 0 0.5rem 0;
+}
+
+.login-subtitle {
+  color: #6b7280;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.login-form {
+  margin-bottom: 2rem;
+}
+
+.login-button {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.login-demo {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 1rem;
+  border: 1px solid #e2e8f0;
+}
+
+.login-demo h3 {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.875rem;
+  color: #374151;
+  font-weight: 600;
+}
+
+.demo-accounts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.demo-account {
+  font-size: 0.875rem;
+  color: #6b7280;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+}
+
+.demo-account strong {
+  color: #374151;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .login-page {
+    padding: 1rem;
+  }
+  
+  .login-card {
+    padding: 1.5rem;
+  }
+  
+  .login-title {
+    font-size: 1.5rem;
+  }
+}
