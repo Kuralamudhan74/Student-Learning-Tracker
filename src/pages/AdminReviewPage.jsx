@@ -6,11 +6,16 @@ import './AdminReviewPage.css';
 
 const AdminReviewPage = () => {
   const [searchParams] = useSearchParams();
-  const { getPendingSubmissions, updateSubmissionFeedback, getStudentById } = useApp();
+  const { getPendingSubmissions, updateSubmissionFeedback, getStudentById, refreshSubmissions } = useApp();
   const [selectedStudentId, setSelectedStudentId] = useState(searchParams.get('student') || '');
   const [feedback, setFeedback] = useState('');
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
+
+  // Refresh submissions when component mounts to get latest data
+  useEffect(() => {
+    refreshSubmissions();
+  }, [refreshSubmissions]);
 
   const pendingSubmissions = getPendingSubmissions();
   const filteredSubmissions = selectedStudentId 

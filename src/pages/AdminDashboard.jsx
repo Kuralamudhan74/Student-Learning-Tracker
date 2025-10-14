@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useApp } from '../contexts/AppContext';
 import { Card, ProgressBar } from '../components/UI';
 import './AdminDashboard.css';
 
 const AdminDashboard = () => {
-  const { students, getPendingSubmissions, calculateProgress } = useApp();
+  const { students, getPendingSubmissions, calculateProgress, refreshStudents } = useApp();
+  
+  // Refresh data when component mounts
+  useEffect(() => {
+    refreshStudents();
+  }, [refreshStudents]);
   
   const pendingSubmissions = getPendingSubmissions();
   const totalStudents = students.length;

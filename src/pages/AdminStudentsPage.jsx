@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useApp } from '../contexts/AppContext';
 import { Card, Button, Modal, Textarea } from '../components/UI';
 import AddStudentModal from '../components/AddStudentModal';
@@ -10,6 +10,11 @@ const AdminStudentsPage = () => {
   const [isGoalModalOpen, setIsGoalModalOpen] = useState(false);
   const [isAddStudentModalOpen, setIsAddStudentModalOpen] = useState(false);
   const [newGoal, setNewGoal] = useState('');
+
+  // Refresh students when component mounts to get latest data
+  useEffect(() => {
+    refreshStudents();
+  }, [refreshStudents]);
 
   const handleSetGoal = (student) => {
     setSelectedStudent(student);
