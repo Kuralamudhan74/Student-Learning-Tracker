@@ -12,7 +12,13 @@ export const useApp = () => {
 };
 
 export const AppProvider = ({ children }) => {
-  const [students, setStudents] = useState(mockStudents);
+  // Initialize students from localStorage or use mock data
+  const getInitialStudents = () => {
+    const savedStudents = localStorage.getItem('students');
+    return savedStudents ? JSON.parse(savedStudents) : mockStudents;
+  };
+
+  const [students, setStudents] = useState(getInitialStudents);
   const [submissions, setSubmissions] = useState(mockSubmissions);
 
   // Get student by ID
@@ -104,6 +110,30 @@ export const AppProvider = ({ children }) => {
     return Math.round(progress);
   };
 
+  // Refresh students from localStorage
+  const refreshStudents = () => {
+    const savedStudents = localStorage.getItem('students');
+    if (savedStudents) {
+      setStudents(JSON.parse(savedStudents));
+    }
+  };
+
+  // Add new student (called from AuthContext)
+  const addNewStudent = (studentData) => {
+    const newStudent = {
+      id: Date.now().toString(),
+      name: studentData.name,
+      email: studentData.email,
+      password: studentData.password,
+      role: 'student',
+      monthlyGoal: '',
+      submissions: []
+    };
+
+    setStudents(prev => [...prev, newStudent]);
+    return newStudent;
+  };
+
   const value = {
     students,
     submissions,
@@ -113,7 +143,9 @@ export const AppProvider = ({ children }) => {
     addSubmission,
     updateSubmissionFeedback,
     updateStudentGoal,
-    calculateProgress
+    calculateProgress,
+    refreshStudents,
+    addNewStudent
   };
 
   return (

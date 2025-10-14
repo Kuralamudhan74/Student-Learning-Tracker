@@ -8,6 +8,23 @@
   margin-bottom: 2rem;
 }
 
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.header-text {
+  flex: 1;
+  min-width: 200px;
+}
+
+.add-student-btn {
+  white-space: nowrap;
+}
+
 .page-header h1 {
   font-size: 2rem;
   font-weight: bold;
@@ -160,6 +177,15 @@
     font-size: 1.5rem;
   }
   
+  .header-content {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .add-student-btn {
+    width: 100%;
+  }
+  
   .student-header {
     flex-direction: column;
     align-items: flex-start;
@@ -174,5 +200,8 @@
     width: 100%;
   }
 }
+
+
+
 
 
