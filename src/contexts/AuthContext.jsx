@@ -36,8 +36,9 @@ export const AuthProvider = ({ children }) => {
       return { success: true, user: adminUser };
     }
 
-    // Check students
-    const student = mockStudents.find(s => s.email === email && s.password === password);
+    // Check students from localStorage (includes both mock and newly added students)
+    const allStudents = getAllStudents();
+    const student = allStudents.find(s => s.email === email && s.password === password);
     if (student) {
       const studentUser = { ...student };
       setUser(studentUser);
@@ -60,11 +61,41 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem('user', JSON.stringify(updatedUser));
   };
 
+  const addStudent = (studentData) => {
+    // Get existing students from localStorage or use mock data
+    const existingStudents = JSON.parse(localStorage.getItem('students') || JSON.stringify(mockStudents));
+    
+    // Create new student with unique ID
+    const newStudent = {
+      id: Date.now().toString(),
+      name: studentData.name,
+      email: studentData.email,
+      password: studentData.password,
+      role: 'student',
+      monthlyGoal: '',
+      submissions: []
+    };
+
+    // Add to existing students
+    const updatedStudents = [...existingStudents, newStudent];
+    
+    // Save to localStorage
+    localStorage.setItem('students', JSON.stringify(updatedStudents));
+    
+    return { success: true, student: newStudent };
+  };
+
+  const getAllStudents = () => {
+    return JSON.parse(localStorage.getItem('students') || JSON.stringify(mockStudents));
+  };
+
   const value = {
     user,
     login,
     logout,
     updateUser,
+    addStudent,
+    getAllStudents,
     loading
   };
 

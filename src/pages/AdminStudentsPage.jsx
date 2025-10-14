@@ -1,13 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useApp } from '../contexts/AppContext';
 import { Card, Button, Modal, Textarea } from '../components/UI';
+import AddStudentModal from '../components/AddStudentModal';
 import './AdminStudentsPage.css';
 
 const AdminStudentsPage = () => {
-  const { students, updateStudentGoal, calculateProgress } = useApp();
+  const { students, updateStudentGoal, calculateProgress, refreshStudents } = useApp();
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [isGoalModalOpen, setIsGoalModalOpen] = useState(false);
+  const [isAddStudentModalOpen, setIsAddStudentModalOpen] = useState(false);
   const [newGoal, setNewGoal] = useState('');
+
+  // Refresh students when component mounts to get latest data
+  useEffect(() => {
+    refreshStudents();
+  }, [refreshStudents]);
 
   const handleSetGoal = (student) => {
     setSelectedStudent(student);
@@ -27,8 +34,19 @@ const AdminStudentsPage = () => {
   return (
     <div className="admin-students">
       <div className="page-header">
-        <h1>👥 Manage Students</h1>
-        <p>View student progress and set monthly goals</p>
+        <div className="header-content">
+          <div className="header-text">
+            <h1>👥 Manage Students</h1>
+            <p>View student progress and set monthly goals</p>
+          </div>
+          <Button
+            variant="primary"
+            onClick={() => setIsAddStudentModalOpen(true)}
+            className="add-student-btn"
+          >
+            ➕ Add New Student
+          </Button>
+        </div>
       </div>
 
       <div className="students-grid">
@@ -126,6 +144,12 @@ const AdminStudentsPage = () => {
           </div>
         </div>
       </Modal>
+
+      {/* Add Student Modal */}
+      <AddStudentModal
+        isOpen={isAddStudentModalOpen}
+        onClose={() => setIsAddStudentModalOpen(false)}
+      />
     </div>
   );
 };

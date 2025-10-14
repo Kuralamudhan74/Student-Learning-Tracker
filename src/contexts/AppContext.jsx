@@ -12,8 +12,20 @@ export const useApp = () => {
 };
 
 export const AppProvider = ({ children }) => {
-  const [students, setStudents] = useState(mockStudents);
-  const [submissions, setSubmissions] = useState(mockSubmissions);
+  // Initialize students from localStorage or use mock data
+  const getInitialStudents = () => {
+    const savedStudents = localStorage.getItem('students');
+    return savedStudents ? JSON.parse(savedStudents) : mockStudents;
+  };
+
+  // Initialize submissions from localStorage or use mock data
+  const getInitialSubmissions = () => {
+    const savedSubmissions = localStorage.getItem('submissions');
+    return savedSubmissions ? JSON.parse(savedSubmissions) : mockSubmissions;
+  };
+
+  const [students, setStudents] = useState(getInitialStudents);
+  const [submissions, setSubmissions] = useState(getInitialSubmissions);
 
   // Get student by ID
   const getStudentById = (id) => {
@@ -42,44 +54,70 @@ export const AppProvider = ({ children }) => {
       reviewed: false
     };
     
-    setSubmissions(prev => [...prev, newSubmission]);
+    // Update submissions state
+    setSubmissions(prev => {
+      const updatedSubmissions = [...prev, newSubmission];
+      // Save to localStorage
+      localStorage.setItem('submissions', JSON.stringify(updatedSubmissions));
+      return updatedSubmissions;
+    });
     
-    // Update student's submissions array
-    setStudents(prev => prev.map(student => 
-      student.id === studentId 
-        ? { ...student, submissions: [...student.submissions, newSubmission] }
-        : student
-    ));
+    // Update student's submissions array and save to localStorage
+    setStudents(prev => {
+      const updatedStudents = prev.map(student => 
+        student.id === studentId 
+          ? { ...student, submissions: [...student.submissions, newSubmission] }
+          : student
+      );
+      // Save to localStorage
+      localStorage.setItem('students', JSON.stringify(updatedStudents));
+      return updatedStudents;
+    });
     
     return newSubmission;
   };
 
   // Update submission feedback
   const updateSubmissionFeedback = (submissionId, feedback) => {
-    setSubmissions(prev => prev.map(submission => 
-      submission.id === submissionId 
-        ? { ...submission, feedback, reviewed: true }
-        : submission
-    ));
-
-    // Update in students array as well
-    setStudents(prev => prev.map(student => ({
-      ...student,
-      submissions: student.submissions.map(submission =>
-        submission.id === submissionId
+    setSubmissions(prev => {
+      const updatedSubmissions = prev.map(submission => 
+        submission.id === submissionId 
           ? { ...submission, feedback, reviewed: true }
           : submission
-      )
-    })));
+      );
+      // Save to localStorage
+      localStorage.setItem('submissions', JSON.stringify(updatedSubmissions));
+      return updatedSubmissions;
+    });
+
+    // Update in students array as well and save to localStorage
+    setStudents(prev => {
+      const updatedStudents = prev.map(student => ({
+        ...student,
+        submissions: student.submissions.map(submission =>
+          submission.id === submissionId
+            ? { ...submission, feedback, reviewed: true }
+            : submission
+        )
+      }));
+      // Save to localStorage
+      localStorage.setItem('students', JSON.stringify(updatedStudents));
+      return updatedStudents;
+    });
   };
 
   // Update student monthly goal
   const updateStudentGoal = (studentId, goal) => {
-    setStudents(prev => prev.map(student => 
-      student.id === studentId 
-        ? { ...student, monthlyGoal: goal }
-        : student
-    ));
+    setStudents(prev => {
+      const updatedStudents = prev.map(student => 
+        student.id === studentId 
+          ? { ...student, monthlyGoal: goal }
+          : student
+      );
+      // Save to localStorage
+      localStorage.setItem('students', JSON.stringify(updatedStudents));
+      return updatedStudents;
+    });
   };
 
   // Calculate progress percentage for a student
@@ -104,6 +142,49 @@ export const AppProvider = ({ children }) => {
     return Math.round(progress);
   };
 
+  // Refresh students and submissions from localStorage
+  const refreshStudents = () => {
+    const savedStudents = localStorage.getItem('students');
+    if (savedStudents) {
+      setStudents(JSON.parse(savedStudents));
+    }
+    
+    const savedSubmissions = localStorage.getItem('submissions');
+    if (savedSubmissions) {
+      setSubmissions(JSON.parse(savedSubmissions));
+    }
+  };
+
+  // Add new student (called from AuthContext)
+  const addNewStudent = (studentData) => {
+    const newStudent = {
+      id: Date.now().toString(),
+      name: studentData.name,
+      email: studentData.email,
+      password: studentData.password,
+      role: 'student',
+      monthlyGoal: '',
+      submissions: []
+    };
+
+    setStudents(prev => {
+      const updatedStudents = [...prev, newStudent];
+      // Save to localStorage
+      localStorage.setItem('students', JSON.stringify(updatedStudents));
+      return updatedStudents;
+    });
+    
+    return newStudent;
+  };
+
+  // Refresh submissions from localStorage
+  const refreshSubmissions = () => {
+    const savedSubmissions = localStorage.getItem('submissions');
+    if (savedSubmissions) {
+      setSubmissions(JSON.parse(savedSubmissions));
+    }
+  };
+
   const value = {
     students,
     submissions,
@@ -113,7 +194,10 @@ export const AppProvider = ({ children }) => {
     addSubmission,
     updateSubmissionFeedback,
     updateStudentGoal,
-    calculateProgress
+    calculateProgress,
+    refreshStudents,
+    refreshSubmissions,
+    addNewStudent
   };
 
   return (

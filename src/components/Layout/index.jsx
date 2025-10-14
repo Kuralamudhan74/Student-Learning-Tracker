@@ -27,12 +27,14 @@ const Layout = ({ children }) => {
                   <Link to="/admin/dashboard" className="nav-link">Dashboard</Link>
                   <Link to="/admin/students" className="nav-link">Students</Link>
                   <Link to="/admin/review" className="nav-link">Review</Link>
+                  <Link to="/learning-portal" className="nav-link">Learning Portal</Link>
                 </>
               ) : (
                 <>
                   <Link to="/student/dashboard" className="nav-link">Dashboard</Link>
                   <Link to="/student/profile" className="nav-link">Profile</Link>
                   <Link to="/student/form" className="nav-link">Daily Form</Link>
+                  <Link to="/learning-portal" className="nav-link">Learning Portal</Link>
                 </>
               )}
               

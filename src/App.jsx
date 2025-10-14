@@ -8,9 +8,9 @@ import StudentDashboard from './pages/StudentDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import DailyLearningForm from './pages/DailyLearningForm';
 import StudentProfile from './pages/StudentProfile';
+import LearningPortal from './pages/LearningPortal';
 import AdminStudentsPage from './pages/AdminStudentsPage';
 import AdminReviewPage from './pages/AdminReviewPage';
-import './App.css';
 
 // Protected Route Component
 const ProtectedRoute = ({ children, requiredRole }) => {
@@ -100,6 +100,16 @@ const AppRoutes = () => {
         element={
           <ProtectedRoute requiredRole="student">
             <DailyLearningForm />
+          </ProtectedRoute>
+        } 
+      />
+
+      {/* Learning Portal Route - Available to both students and admin */}
+      <Route 
+        path="/learning-portal" 
+        element={
+          <ProtectedRoute>
+            <LearningPortal />
           </ProtectedRoute>
         } 
       />
