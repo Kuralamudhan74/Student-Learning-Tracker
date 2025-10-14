@@ -9,6 +9,7 @@ export const learningModules = [
     duration: '2 hours',
     progress: 75,
     isCompleted: false,
+    youtube_url: 'https://youtu.be/SqcY0GlETPk?si=wN_IDdCUvMXV2Z5M',
     lessons: [
       {
         id: '1-1',
@@ -53,6 +54,7 @@ export const learningModules = [
     duration: '3 hours',
     progress: 40,
     isCompleted: false,
+    youtube_url: 'https://youtu.be/SqcY0GlETPk?si=wN_IDdCUvMXV2Z5M',
     lessons: [
       {
         id: '2-1',
@@ -97,6 +99,7 @@ export const learningModules = [
     duration: '2.5 hours',
     progress: 100,
     isCompleted: true,
+    youtube_url: 'https://youtu.be/SqcY0GlETPk?si=wN_IDdCUvMXV2Z5M',
     lessons: [
       {
         id: '3-1',
@@ -133,6 +136,7 @@ export const learningModules = [
     duration: '4 hours',
     progress: 20,
     isCompleted: false,
+    youtube_url: 'https://youtu.be/SqcY0GlETPk?si=wN_IDdCUvMXV2Z5M',
     lessons: [
       {
         id: '4-1',

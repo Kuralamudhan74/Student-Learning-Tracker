@@ -156,7 +156,9 @@ const LearningPortal = () => {
                 size="medium"
                 onClick={() => {
                   // In a real app, this would navigate to the module detail page
-                  alert(`Opening ${module.title} module...`);
+                  //alert(`Opening ${module.title} module...`);
+                  const yturl=module.youtube_url;
+                  window.open(yturl,'_blank');
                 }}
               >
                 {module.isCompleted ? 'Review Module' : 'Start Learning'}

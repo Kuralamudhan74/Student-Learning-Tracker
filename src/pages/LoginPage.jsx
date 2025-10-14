@@ -53,7 +53,7 @@ const LoginPage = () => {
       <div className="login-container">
         <Card className="login-card">
           <div className="login-header">
-            <h1 className="login-title">📚 Student Learning Tracker</h1>
+            <h1 className="login-title">📚 Skill Portal</h1>
             <p className="login-subtitle">Sign in to your account</p>
           </div>
 
@@ -102,7 +102,7 @@ const LoginPage = () => {
                 <strong>Admin:</strong> admin@school.com / admin123
               </div>
               <div className="demo-account">
-                <strong>Student:</strong> alice@student.com / password123
+                <strong>Student:</strong> satwik@student.com / password123
               </div>
             </div>
           </div>

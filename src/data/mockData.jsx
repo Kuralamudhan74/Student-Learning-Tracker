@@ -2,15 +2,15 @@
 export const mockStudents = [
   {
     id: '1',
-    name: 'Alice Johnson',
-    email: 'alice@student.com',
+    name: 'Satwik',
+    email: 'satwik@student.com',
     password: 'password123',
     role: 'student',
     monthlyGoal: 'Complete 20 coding exercises and learn React hooks',
     submissions: [
       {
         id: '1',
-        date: '2024-01-15',
+        date: '2025-01-15',
         text: 'Learned about React useState and useEffect hooks. Built a simple counter component.',
         feedback: 'Great work! Keep practicing with more complex state management.',
         reviewed: true
@@ -26,8 +26,8 @@ export const mockStudents = [
   },
   {
     id: '2',
-    name: 'Bob Smith',
-    email: 'bob@student.com',
+    name: 'Shreya',
+    email: 'shreya@student.com',
     password: 'password123',
     role: 'student',
     monthlyGoal: 'Master JavaScript ES6 features and complete 15 projects',
@@ -50,8 +50,8 @@ export const mockStudents = [
   },
   {
     id: '3',
-    name: 'Carol Davis',
-    email: 'carol@student.com',
+    name: 'Dinesh',
+    email: 'dinesh@student.com',
     password: 'password123',
     role: 'student',
     monthlyGoal: 'Learn CSS Grid and Flexbox, create 10 responsive layouts',
@@ -79,8 +79,8 @@ export const mockSubmissions = [
   {
     id: '1',
     studentId: '1',
-    studentName: 'Alice Johnson',
-    date: '2024-01-15',
+    studentName: 'Satwik',
+    date: '2025-01-15',
     text: 'Learned about React useState and useEffect hooks. Built a simple counter component.',
     feedback: 'Great work! Keep practicing with more complex state management.',
     reviewed: true
@@ -88,7 +88,7 @@ export const mockSubmissions = [
   {
     id: '2',
     studentId: '1',
-    studentName: 'Alice Johnson',
+    studentName: 'Satwik',
     date: '2024-01-16',
     text: 'Studied React Context API and created a theme provider.',
     feedback: '',
@@ -97,7 +97,7 @@ export const mockSubmissions = [
   {
     id: '3',
     studentId: '2',
-    studentName: 'Bob Smith',
+    studentName: 'Shreya',
     date: '2024-01-15',
     text: 'Practiced destructuring, arrow functions, and template literals.',
     feedback: 'Excellent understanding of ES6 basics!',
@@ -106,7 +106,7 @@ export const mockSubmissions = [
   {
     id: '4',
     studentId: '2',
-    studentName: 'Bob Smith',
+    studentName: 'Shreya',
     date: '2024-01-16',
     text: 'Built a todo app using modern JavaScript features.',
     feedback: '',
@@ -115,7 +115,7 @@ export const mockSubmissions = [
   {
     id: '5',
     studentId: '3',
-    studentName: 'Carol Davis',
+    studentName: 'Dinesh',
     date: '2024-01-15',
     text: 'Mastered CSS Grid basics and created a simple grid layout.',
     feedback: 'Good progress! Try more complex grid patterns next.',

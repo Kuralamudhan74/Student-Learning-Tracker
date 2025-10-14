@@ -17,7 +17,7 @@ const Layout = ({ children }) => {
       <header className="header">
         <div className="header-content">
           <Link to="/" className="logo">
-            📚 Student Learning Tracker
+            📚 Skill Portal
           </Link>
           
           {user && (
@@ -54,7 +54,7 @@ const Layout = ({ children }) => {
       </main>
       
       <footer className="footer">
-        <p>&copy; 2024 Student Learning Tracker. All rights reserved.</p>
+        <p>&copy; 2025 Skill Portal. All rights reserved.</p>
       </footer>
     </div>
   );

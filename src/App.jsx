@@ -73,7 +73,7 @@ const AppRoutes = () => {
         path="/login" 
         element={
           <PublicRoute>
-            <LoginPage />
+           <LoginPage />
           </PublicRoute>
         } 
       />
